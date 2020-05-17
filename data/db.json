@@ -1,12 +1,12 @@
 [{
-        "title": "position 0",
-        "text": "kfdfhfdjfh",
+        "title": "Example 1",
+        "text": "this is an example of the content of a note",
         "id": 1
     },
 
     {
-        "title": "position 1",
-        "text": "jkhdfjdhfjh",
+        "title": "Example 2",
+        "text": "this is an example of the content of a note",
         "id": 2
     }
 
