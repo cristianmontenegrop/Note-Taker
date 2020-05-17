@@ -21,6 +21,7 @@ module.exports = function (app) {
 
   app.get("/api/notes", function (req, res) {
     res.json(notesData);
+    console.log("get method executed")
   });
 
   // app.get("/api/waitlist", function(req, res) {
@@ -40,8 +41,13 @@ module.exports = function (app) {
     // It will do this by sending out the value "true" have a table
     // req.body is available since we're using the body parsing middleware
     // if (tableData.length < 5) {
-    notesData.push(req.body);
+    newNote = req.body;
+    newNote.id = notesData.length + 1;
+    notesData.push(newNote);
+    console.log(newNote);
     res.json(true);
+    console.log("post method executed")
+
     // }
     // else {
     // waitListData.push(req.body);
@@ -53,13 +59,28 @@ module.exports = function (app) {
   // I added this below code so you could clear out the table while working with the functionality.
   // Don"t worry about it!
 
-  app.post("/api/clear", function (req, res) {
-    // Empty out the arrays of data
-    tableData.length = 0;
-    waitListData.length = 0;
+  app.delete("/api/notes/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    console.log("id= " + id);
+    console.log(req.params);
+
+    for (i = 0; i < notesData.length; i++) {
+      console.log("i=" + i);
+      console.log("notesData[i].id=" + notesData[i].id);
+      if (notesData[i].id == id) {
+        console.log("IF EXECUTED!")
+        notesData.splice(i, 1);
+      }
+    }
 
     res.json({
       ok: true
     });
+    console.log("delete method executed")
   });
+
+
+
 };
